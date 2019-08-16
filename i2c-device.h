@@ -38,5 +38,5 @@
 typedef void (*i2c_device_handler_func_t) (uint8_t reg, uint8_t val);
 
 void i2c_device_init(uint8_t addr);
-void i2c_device_add_handler(i2c_device_handler_func_t func);
+void i2c_device_add_register(i2c_device_handler_func_t func);
 void i2c_device_set_register(uint8_t reg, uint8_t val);

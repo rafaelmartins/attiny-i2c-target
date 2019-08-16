@@ -31,7 +31,7 @@ main(void)
     DDRB |= (1 << 0);
 
     i2c_device_init(0x20);
-    i2c_device_add_handler(handler);
+    i2c_device_add_register(handler);
 
     sei();
     while (true);

@@ -60,7 +60,7 @@ i2c_device_init(uint8_t addr)
 
 
 void
-i2c_device_add_handler(i2c_device_handler_func_t func)
+i2c_device_add_register(i2c_device_handler_func_t func)
 {
     if (reg_counter >= I2C_REGISTER_ALLOC)
         return;

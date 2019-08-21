@@ -160,8 +160,8 @@ ISR(USI_OVF_vect) {
             }
 
             // set send ack
-            DDR_I2C |= (1 << SDA_I2C);
             USIDR = 0;
+            DDR_I2C |= (1 << SDA_I2C);
             USISR = (1 << USIOIF) | (1 << USIPF) | (1 << USIDC) | (1 << USICNT3) |
                 (1 << USICNT2) | (1 << USICNT1);
 

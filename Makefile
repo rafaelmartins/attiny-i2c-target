@@ -9,6 +9,17 @@ CC = avr-gcc
 OBJCOPY = avr-objcopy
 SIZE = avr-size
 
+# disable clock/8 (run at 8mhz)
+AVR_FUSE_LOW = 0xE2
+
+# spi programming enabled
+AVR_FUSE_HIGH_SPIEN = 0xDF
+# debugwire enabled
+AVR_FUSE_HIGH_DWEN = 0x9F
+
+AVR_FUSE_EXTENDED = 0xFF
+AVR_LOCKBIT = 0xFF
+
 CFLAGS = \
 	-std=gnu99 \
 	-mmcu=$(AVR_MCU) \
@@ -62,11 +73,22 @@ flash: firmware.hex
 		-p $(AVR_MCU) \
 		-c $(AVRDUDE_PROGRAMMER) \
 		-P $(AVRDUDE_PORT) \
-		-U flash:w:$<
+		-U flash:w:$< \
+		-U lfuse:w:$(AVR_FUSE_LOW):m \
+		-U hfuse:w:$(AVR_FUSE_HIGH_SPIEN):m \
+		-U efuse:w:$(AVR_FUSE_EXTENDED):m \
+		-U lock:w:$(AVR_LOCKBIT):m
+
+dw:
+	$(AVRDUDE) \
+		-p $(AVR_MCU) \
+		-c $(AVRDUDE_PROGRAMMER) \
+		-P $(AVRDUDE_PORT) \
+		-U hfuse:w:$(AVR_FUSE_HIGH_DWEN):m
 
 clean:
 	-$(RM) \
 		firmware.elf \
 		firmware.hex
 
-.PHONY: all size flash clean
+.PHONY: all size flash dw clean

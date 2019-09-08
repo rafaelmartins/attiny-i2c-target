@@ -17,6 +17,7 @@
 #   define PIN_I2C PINA
 #   define SDA_I2C 6
 #   define SCL_I2C 4
+#   define USI_OVF_VECT_I2C USI_OVF_vect
 #   define TIMSK_I2C TIMSK0
 #   define TIMER_VECT_I2C TIM0_COMPA_vect
 #elif defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
@@ -25,6 +26,16 @@
 #   define PIN_I2C PINB
 #   define SDA_I2C 0
 #   define SCL_I2C 2
+#   define USI_OVF_VECT_I2C USI_OVF_vect
+#   define TIMSK_I2C TIMSK
+#   define TIMER_VECT_I2C TIMER0_COMPA_vect
+#elif defined(__AVR_ATtiny2313__) || (__AVR_ATtiny4313__)
+#   define DDR_I2C DDRB
+#   define PORT_I2C PORTB
+#   define PIN_I2C PINB
+#   define SDA_I2C 5
+#   define SCL_I2C 7
+#   define USI_OVF_VECT_I2C USI_OVERFLOW_vect
 #   define TIMSK_I2C TIMSK
 #   define TIMER_VECT_I2C TIMER0_COMPA_vect
 #else

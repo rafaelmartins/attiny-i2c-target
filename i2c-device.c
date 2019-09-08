@@ -98,7 +98,7 @@ ISR(USI_START_vect) {
 }
 
 
-ISR(USI_OVF_vect) {
+ISR(USI_OVF_VECT_I2C) {
     switch (state) {
 
         case ADDR:

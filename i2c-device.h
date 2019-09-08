@@ -11,30 +11,38 @@
 
 #include <stdint.h>
 
-#if defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
+#if defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny24A__) || \
+    defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny44A__) || \
+    defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny84A__)
 #   define DDR_I2C DDRA
 #   define PORT_I2C PORTA
 #   define PIN_I2C PINA
 #   define SDA_I2C 6
 #   define SCL_I2C 4
+#   define USI_STR_VECT_I2C USI_STR_vect
 #   define USI_OVF_VECT_I2C USI_OVF_vect
 #   define TIMSK_I2C TIMSK0
 #   define TIMER_VECT_I2C TIM0_COMPA_vect
-#elif defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
+#elif defined(__AVR_ATtiny25__) || \
+      defined(__AVR_ATtiny45__) || \
+      defined(__AVR_ATtiny85__)
 #   define DDR_I2C DDRB
 #   define PORT_I2C PORTB
 #   define PIN_I2C PINB
 #   define SDA_I2C 0
 #   define SCL_I2C 2
+#   define USI_STR_VECT_I2C USI_START_vect
 #   define USI_OVF_VECT_I2C USI_OVF_vect
 #   define TIMSK_I2C TIMSK
 #   define TIMER_VECT_I2C TIMER0_COMPA_vect
-#elif defined(__AVR_ATtiny2313__) || (__AVR_ATtiny4313__)
+#elif defined(__AVR_ATtiny2313__) || defined(__AVR_ATtiny2313A__) || \
+      defined(__AVR_ATtiny4313__)
 #   define DDR_I2C DDRB
 #   define PORT_I2C PORTB
 #   define PIN_I2C PINB
 #   define SDA_I2C 5
 #   define SCL_I2C 7
+#   define USI_STR_VECT_I2C USI_START_vect
 #   define USI_OVF_VECT_I2C USI_OVERFLOW_vect
 #   define TIMSK_I2C TIMSK
 #   define TIMER_VECT_I2C TIMER0_COMPA_vect

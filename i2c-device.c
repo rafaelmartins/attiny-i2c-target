@@ -81,7 +81,7 @@ i2c_device_set_register(uint8_t reg, uint8_t val)
 }
 
 
-ISR(USI_START_vect) {
+ISR(USI_STR_VECT_I2C) {
     state = ADDR;
 
     DDR_I2C &= ~(1 << SDA_I2C);

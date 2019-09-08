@@ -1,7 +1,7 @@
 # programmer and mcu settings
 AVRDUDE_PROGRAMMER ?= avrispmkII
 AVRDUDE_PORT ?= usb
-AVR_MCU ?= attiny84
+AVR_MCU ?= attiny84a
 AVR_CPU_FREQUENCY ?= 8000000UL
 
 AVRDUDE = avrdude
@@ -91,4 +91,10 @@ clean:
 		firmware.elf \
 		firmware.hex
 
-.PHONY: all size flash dw clean
+build-test:
+	set -e; \
+	for i in {2,4,8}4{,a} {2,4,8}5 2313{,a} 4313; do \
+		$(MAKE) clean all AVR_MCU=attiny$$i; \
+	done
+
+.PHONY: all size flash dw clean build-test

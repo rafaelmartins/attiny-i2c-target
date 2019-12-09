@@ -96,5 +96,6 @@ build-test:
 	for i in {2,4,8}4{,a} {2,4,8}5 2313{,a} 4313; do \
 		$(MAKE) clean all AVR_MCU=attiny$$i; \
 	done
+	$(MAKE) clean
 
 .PHONY: all size flash dw clean build-test

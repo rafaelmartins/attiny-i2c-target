@@ -55,7 +55,7 @@ i2c_device_init(uint8_t addr)
     TIMSK_I2C |= (1 << OCIE0A);
     TCCR0A &= ~((1 << COM0A1) | (1 << COM0A0) | (1 << WGM01) | (1 << WGM00));
     TCCR0B &= ~((1 << FOC0A) | (1 << WGM02) | (1 << CS01));
-    TCCR0B |= (1 << CS02) | (1 << CS00);  // prescale 1024
+    TCCR0B |= (1 << CS00);  // no prescaling
 }
 
 

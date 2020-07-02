@@ -18,11 +18,11 @@ FIRMWARE_HEADERS = \
 	i2c-target.h \
 	$(NULL)
 
-build-test:
+test:
 	set -e; \
 	for i in {2,4,8}4{,a} {2,4,8}5 2313{,a} 4313; do \
 		$(MAKE) clean all AVR_MCU=attiny$$i; \
 	done
 	$(MAKE) clean
 
-.PHONY: build-test
+.PHONY: test

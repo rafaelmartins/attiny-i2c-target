@@ -11,11 +11,11 @@ FIRMWARE_CFLAGS = \
 
 FIRMWARE_SOURCES = \
 	test.c \
-	i2c-device.c \
+	i2c-target.c \
 	$(NULL)
 
 FIRMWARE_HEADERS = \
-	i2c-device.h \
+	i2c-target.h \
 	$(NULL)
 
 build-test:

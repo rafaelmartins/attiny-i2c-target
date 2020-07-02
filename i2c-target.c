@@ -1,7 +1,7 @@
 /*
- * attiny-i2c-device: An implementation of I2C-connected device for Attiny
+ * attiny-i2c-target: An implementation of I2C target for Attiny
  *                    microcontrollers, using USI.
- * Copyright (C) 2019 Rafael G. Martins <rafael@rafaelmartins.eng.br>
+ * Copyright (C) 2019-2020 Rafael G. Martins <rafael@rafaelmartins.eng.br>
  *
  * This program can be distributed under the terms of the BSD License.
  * See the file LICENSE.
@@ -12,12 +12,12 @@
 #include <stdint.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "i2c-device.h"
+#include "i2c-target.h"
 
 typedef struct {
     uint8_t data;
     bool set;
-    i2c_device_handler_func_t func;
+    i2c_target_handler_func_t func;
 } i2c_register_t;
 
 typedef enum {
@@ -39,7 +39,7 @@ static volatile uint8_t reg;
 
 
 void
-i2c_device_init(uint8_t addr)
+i2c_target_init(uint8_t addr)
 {
     reg_counter = 0;
 
@@ -60,7 +60,7 @@ i2c_device_init(uint8_t addr)
 
 
 void
-i2c_device_add_register(i2c_device_handler_func_t func)
+i2c_target_add_register(i2c_target_handler_func_t func)
 {
     if (reg_counter >= I2C_REGISTER_ALLOC)
         return;
@@ -72,7 +72,7 @@ i2c_device_add_register(i2c_device_handler_func_t func)
 
 
 void
-i2c_device_set_register(uint8_t reg, uint8_t val)
+i2c_target_set_register(uint8_t reg, uint8_t val)
 {
     if (reg >= reg_counter)
         return;

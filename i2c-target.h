@@ -1,7 +1,7 @@
 /*
- * attiny-i2c-device: An implementation of I2C-connected device for Attiny
+ * attiny-i2c-target: An implementation of I2C target for Attiny
  *                    microcontrollers, using USI.
- * Copyright (C) 2019 Rafael G. Martins <rafael@rafaelmartins.eng.br>
+ * Copyright (C) 2019-2020 Rafael G. Martins <rafael@rafaelmartins.eng.br>
  *
  * This program can be distributed under the terms of the BSD License.
  * See the file LICENSE.
@@ -54,8 +54,8 @@
 #   define I2C_REGISTER_ALLOC 10
 #endif
 
-typedef void (*i2c_device_handler_func_t) (uint8_t reg, uint8_t val);
+typedef void (*i2c_target_handler_func_t) (uint8_t reg, uint8_t val);
 
-void i2c_device_init(uint8_t addr);
-void i2c_device_add_register(i2c_device_handler_func_t func);
-void i2c_device_set_register(uint8_t reg, uint8_t val);
+void i2c_target_init(uint8_t addr);
+void i2c_target_add_register(i2c_target_handler_func_t func);
+void i2c_target_set_register(uint8_t reg, uint8_t val);
